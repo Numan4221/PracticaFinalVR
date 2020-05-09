@@ -38,11 +38,18 @@ public class Interfaz : MonoBehaviour
         {
             if (encendido)
             {
-                miObjeto.apagar();
+                if(miObjeto != null)
+                {
+                    miObjeto.apagar();
+                }
+
                 encendido = false;
             } else
             {
-                miObjeto.encender();
+                if (miObjeto != null)
+                {
+                    miObjeto.encender();
+                }
                 encendido = true;
             }
             tiempoActual = tiempoEsperar;
