@@ -178,7 +178,7 @@ namespace PaperPlaneTools.AR {
                         {
                             inicializado = false;
                         }
-                        print("destruido");
+
                         
 					}
 				} else {
@@ -193,7 +193,7 @@ namespace PaperPlaneTools.AR {
 			//Create objects for markers not matched with any game object
 			foreach (int markerIndex in foundedMarkers) {
 
-                Debug.Log("Crendo Obj");
+
                 GameObject gameObject = Instantiate(markerObject.markerPrefab,camera.transform);
                 MarkerOnScene markerOnScene = new MarkerOnScene() {
 					gameObject = gameObject
@@ -214,7 +214,6 @@ namespace PaperPlaneTools.AR {
             {
                 if (!inicializado)
                 {
-                    Debug.Log("interpolando sin ini ");
                     Vector3 posMando = MatrixHelper.GetPosition(matrix);
                     Quaternion rotMando = MatrixHelper.GetQuaternion(matrix);
 
@@ -231,7 +230,6 @@ namespace PaperPlaneTools.AR {
                     gameObject.transform.localScale = MatrixHelper.GetScale(matrix);
                 } else
                 {
-                    Debug.Log("interpolando con ini ");
                     Vector3 posMando = MatrixHelper.GetPosition(matrix);
                     Quaternion rotMando = MatrixHelper.GetQuaternion(matrix);
 
