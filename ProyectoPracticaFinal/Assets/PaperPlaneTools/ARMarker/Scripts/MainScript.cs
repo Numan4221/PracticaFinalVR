@@ -220,7 +220,7 @@ namespace PaperPlaneTools.AR {
                     Vector3 newPos = (posMando + gameObject.transform.localPosition) / 2;
                     Quaternion newRot = Quaternion.Slerp(gameObject.transform.localRotation, rotMando, 0.5f);
 
-                    posAntiguaMando = gameObject.transform.localPosition + new Vector3(0, 0.1f, 0);
+                    posAntiguaMando = gameObject.transform.localPosition + new Vector3(0, 0.05f, 0);
                     rotAntiguaMando = gameObject.transform.localRotation;
                     inicializado = true;
 
@@ -240,7 +240,7 @@ namespace PaperPlaneTools.AR {
 
                     posAntiguaMando = gameObject.transform.localPosition;
                     rotAntiguaMando = gameObject.transform.localRotation;
-                    gameObject.transform.localPosition = newPos - new Vector3(0, 0.1f, 0);
+                    gameObject.transform.localPosition = newPos - new Vector3(0, 0.05f, 0);
                     gameObject.transform.localRotation = newRot;
                     gameObject.transform.localScale = MatrixHelper.GetScale(matrix);
                 }
