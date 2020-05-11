@@ -11,10 +11,11 @@ public class ControlPizarra : MonoBehaviour
     #region InterfazNivel2
     public List<GameObject> interfazMusica;
     public List<GameObject> interfazTele;
+    public List<GameObject> interfazDecoracion;
     #endregion
-    public enum pantallaActual { Principal,Musica,Tele}
+    public enum pantallaActual { Principal,Musica,Tele,Decoracion}
 
-    public enum comandos { Atras,Musica,Tele}
+    public enum comandos { Atras,Musica,Tele,Decoracion}
 
     public float tiempoEspera;
     private float tiempoActual = 0;
@@ -59,10 +60,16 @@ public class ControlPizarra : MonoBehaviour
                         case pantallaActual.Tele:
                             volverInterfazPrincipalDesdeTele();
                             break;
+                        case pantallaActual.Decoracion:
+                            volverInterfazPrincipalDesdeDecoracion();
+                            break;
                     }
                     break;
                 case comandos.Tele:
                     abrirTele();
+                    break;
+                case comandos.Decoracion:
+                    abrirDecoracion();
                     break;
             }
             tiempoActual = tiempoEspera;
@@ -83,6 +90,19 @@ public class ControlPizarra : MonoBehaviour
         }
     }
 
+    public void abrirDecoracion()
+    {
+        foreach (GameObject obj in interfazPrincipal)
+        {
+            obj.SetActive(false);
+        }
+        nivel = pantallaActual.Tele;
+        foreach (GameObject obj in interfazDecoracion)
+        {
+            obj.SetActive(true);
+        }
+    }
+
     public void abrirMusica()
     {
         foreach(GameObject obj in interfazPrincipal)
@@ -91,6 +111,19 @@ public class ControlPizarra : MonoBehaviour
         }
         nivel = pantallaActual.Musica;
         foreach(GameObject obj in interfazMusica)
+        {
+            obj.SetActive(true);
+        }
+    }
+   
+    public void volverInterfazPrincipalDesdeDecoracion()
+    {
+        foreach (GameObject obj in interfazDecoracion)
+        {
+            obj.SetActive(false);
+        }
+        nivel = pantallaActual.Principal;
+        foreach (GameObject obj in interfazPrincipal)
         {
             obj.SetActive(true);
         }

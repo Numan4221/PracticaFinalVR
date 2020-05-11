@@ -5,7 +5,11 @@ using UnityEngine;
 public class Speakers : ObjetoControlable
 {
     // de momento la cola es unica  pero habra que ampliarlo a 4 
-    public List<AudioClip> listaReproducción;
+
+    public List<AudioClip> pistasAlta1;
+    public List<AudioClip> pistasAlta2;
+    public List<AudioClip> pistasAlta3;
+    public List<AudioClip> pistasAlta4;
     public int index = 0;
     public bool aleatorio = false;
 
@@ -17,10 +21,9 @@ public class Speakers : ObjetoControlable
     void Start()
     {
         actualizarVolumen();
-        foreach (AudioSource altavoz in altavoces)
-        {
-            altavoz.clip = listaReproducción[index];
-        }
+
+        asignarCancion(index);
+        
     }
 
     void Update()
@@ -33,27 +36,25 @@ public class Speakers : ObjetoControlable
                 {
                     if (aleatorio)
                     {
-                        int aux = Random.Range(0, listaReproducción.Count);
+                        int aux = Random.Range(0, pistasAlta1.Count);
                         while (aux == index)
                         {
-                            aux = Random.Range(0, listaReproducción.Count);
+                            aux = Random.Range(0, pistasAlta1.Count);
                         }
                         index = aux;
-                        foreach (AudioSource altavoz in altavoces)
-                        {
-                            altavoz.clip = listaReproducción[index];
-                            altavoz.Play();
-                        }
+
+                        asignarCancion(index);
+
                     }
                     else
                     {
-                        if (++index == listaReproducción.Count)
+                        if (++index == pistasAlta1.Count)
                         {
                             index = 0;
                         }
+                        asignarCancion(index);
                         foreach (AudioSource altavoz in altavoces)
                         {
-                            altavoz.clip = listaReproducción[index];
                             altavoz.Play();
                         }
                     }
@@ -125,17 +126,22 @@ public class Speakers : ObjetoControlable
         if (!aleatorio)
         {
             encendido = true;
-            int aux = Random.Range(0, listaReproducción.Count);
+            int aux = Random.Range(0, pistasAlta1.Count);
             while (aux == index)
             {
-                aux = Random.Range(0, listaReproducción.Count);
+                aux = Random.Range(0, pistasAlta1.Count);
             }
             index = aux;
             foreach (AudioSource altavoz in altavoces){
                 altavoz.Stop();
-                altavoz.clip = listaReproducción[index];
+            }
+            asignarCancion(index);
+            foreach (AudioSource altavoz in altavoces)
+            {
                 altavoz.Play();
             }
+
+
             aleatorio = true;
         } else
         {
@@ -168,6 +174,14 @@ public class Speakers : ObjetoControlable
            
         } 
         
+    }
+
+    public void asignarCancion(int num)
+    {
+        altavoces[0].clip = pistasAlta1[num];
+        altavoces[1].clip = pistasAlta2[num];
+        altavoces[2].clip = pistasAlta3[num];
+        altavoces[3].clip = pistasAlta4[num];
     }
 
 }

@@ -17,7 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/EscenaSergio.unity
     guid: 0643096e1a31fa24cbf7ebc03974f27e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Escena2.unity
     guid: 3a6073395135a344aa48d199e3cd86b9
+  - enabled: 1
+    path: Assets/Scenes/Escena3.unity
+    guid: cf4d8a879f03b38469257d35cf7295f4
   m_configObjects: {}
