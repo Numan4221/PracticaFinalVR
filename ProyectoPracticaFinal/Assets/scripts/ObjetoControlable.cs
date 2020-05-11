@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjetoControlable : MonoBehaviour
 {
+    public bool encendido = false;
+
     virtual
     public void encender() {
         Debug.Log("implemente el metodo");

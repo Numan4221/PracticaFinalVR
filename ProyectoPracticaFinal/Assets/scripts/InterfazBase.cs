@@ -8,12 +8,10 @@ public class InterfazBase : MonoBehaviour
     public float tiempoActual;
     public Material interfazSinActivar;
     public Material interfazActivada;
-    protected bool encendido;
     // Start is called before the first frame update
     virtual
     protected void Start()
     {
-        encendido = false;
         tiempoActual = 0;
         this.GetComponent<MeshRenderer>().material = interfazSinActivar;
     }
