@@ -10,7 +10,7 @@ public class ReproductorVideo : ObjetoControlable
     public VideoPlayer reproductor;
     public AudioSource sonido;
     public int canal = 2;
-    bool modoCine = false;
+    public bool modoCine = false;
     public GameObject interfazTele;
     Vector3 normalScale;
     Vector3 normalPos;
