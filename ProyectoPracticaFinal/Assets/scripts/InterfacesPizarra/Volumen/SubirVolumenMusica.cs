@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SubirVolumenMusica : InterfazBase
 {
-     
-    public MostrarVolumen mostrador;
+    
     public Speakers controladorAltavocez;
     // Start is called before the first frame update
-    void Start()
+    override
+    protected void Start()
     {
         tiempoEsperar = 0.2f;
     }
@@ -19,23 +19,9 @@ public class SubirVolumenMusica : InterfazBase
         if (tiempoActual <= 0)
         {
             tiempoActual = base.tiempoEsperar;
-            StartCoroutine("subirVol");
-
-        }
-    }
-
-
-    IEnumerator subirVol()
-    {
-        bool activado = false;
-
-        while (!activado)
-        {
             controladorAltavocez.subirVolumen();
-            activado = true;
-            yield return new WaitForSecondsRealtime(base.tiempoEsperar);
-        }
 
+        }
     }
 
 

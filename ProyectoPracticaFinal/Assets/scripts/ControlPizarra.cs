@@ -10,10 +10,11 @@ public class ControlPizarra : MonoBehaviour
     #endregion
     #region InterfazNivel2
     public List<GameObject> interfazMusica;
+    public List<GameObject> interfazTele;
     #endregion
-    public enum pantallaActual { Principal,Musica}
+    public enum pantallaActual { Principal,Musica,Tele}
 
-    public enum comandos { Atras,Musica}
+    public enum comandos { Atras,Musica,Tele}
 
     public float tiempoEspera;
     private float tiempoActual = 0;
@@ -55,12 +56,31 @@ public class ControlPizarra : MonoBehaviour
                         case pantallaActual.Musica:
                             volverInterfazPrincipalDesdeMusica();
                             break;
+                        case pantallaActual.Tele:
+                            volverInterfazPrincipalDesdeTele();
+                            break;
                     }
+                    break;
+                case comandos.Tele:
+                    abrirTele();
                     break;
             }
             tiempoActual = tiempoEspera;
         }
        
+    }
+
+    public void abrirTele()
+    {
+        foreach (GameObject obj in interfazPrincipal)
+        {
+            obj.SetActive(false);
+        }
+        nivel = pantallaActual.Tele;
+        foreach (GameObject obj in interfazTele)
+        {
+            obj.SetActive(true);
+        }
     }
 
     public void abrirMusica()
@@ -79,6 +99,19 @@ public class ControlPizarra : MonoBehaviour
     public void volverInterfazPrincipalDesdeMusica()
     {
         foreach (GameObject obj in interfazMusica)
+        {
+            obj.SetActive(false);
+        }
+        nivel = pantallaActual.Principal;
+        foreach (GameObject obj in interfazPrincipal)
+        {
+            obj.SetActive(true);
+        }
+    }
+
+    public void volverInterfazPrincipalDesdeTele()
+    {
+        foreach (GameObject obj in interfazTele)
         {
             obj.SetActive(false);
         }

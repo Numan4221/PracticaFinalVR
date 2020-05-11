@@ -11,21 +11,19 @@ public class Interfaz : InterfazBase
     {
         if(tiempoActual <= 0)
         {
-            if (encendido)
+            if (miObjeto.encendido)
             {
                 if(miObjeto != null)
                 {
                     miObjeto.apagar();
                 }
 
-                encendido = false;
             } else
             {
                 if (miObjeto != null)
                 {
                     miObjeto.encender();
                 }
-                encendido = true;
             }
             tiempoActual = tiempoEsperar;
         }
