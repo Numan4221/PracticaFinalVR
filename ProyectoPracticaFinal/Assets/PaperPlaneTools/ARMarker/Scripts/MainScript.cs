@@ -208,27 +208,25 @@ namespace PaperPlaneTools.AR {
 			Matrix4x4 matrixZ = Matrix4x4.TRS (Vector3.zero, Quaternion.identity, new Vector3 (1, 1, -1));
 			Matrix4x4 matrix = matrixY * transformMatrix * matrixZ;
 
+
             if (gameObject.name.Equals("MandoCapsula(Clone)"))
             {
-
-                gameObject.transform.localPosition = MatrixHelper.GetPosition(matrix);
-                gameObject.transform.localRotation = MatrixHelper.GetQuaternion(matrix);
-                gameObject.transform.localScale = MatrixHelper.GetScale(matrix);
-                /*
+                
                 if (!inicializado)
                 {
                     Vector3 posMando = MatrixHelper.GetPosition(matrix);
                     Quaternion rotMando = MatrixHelper.GetQuaternion(matrix);
 
+
                     Vector3 newPos = (posMando + gameObject.transform.localPosition) / 2;
                     Quaternion newRot = Quaternion.Slerp(gameObject.transform.localRotation, rotMando, 0.5f);
 
-                    posAntiguaMando = gameObject.transform.localPosition + new Vector3(0, 0.05f, 0);
+                    posAntiguaMando = gameObject.transform.localPosition;
                     rotAntiguaMando = gameObject.transform.localRotation;
                     inicializado = true;
 
 
-                    gameObject.transform.localPosition = newPos - new Vector3(0,0.05f,0);
+                    gameObject.transform.localPosition = newPos;
                     gameObject.transform.localRotation = newRot;
                     gameObject.transform.localScale = MatrixHelper.GetScale(matrix);
                 } else
@@ -243,11 +241,10 @@ namespace PaperPlaneTools.AR {
 
                     posAntiguaMando = gameObject.transform.localPosition;
                     rotAntiguaMando = gameObject.transform.localRotation;
-                    gameObject.transform.localPosition = newPos - new Vector3(0, 0.05f, 0);
+                    gameObject.transform.localPosition = newPos;
                     gameObject.transform.localRotation = newRot;
                     gameObject.transform.localScale = MatrixHelper.GetScale(matrix);
                 }
-                */
 
             } else
             {

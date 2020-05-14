@@ -11,24 +11,35 @@ public class InterfazSIguienteCuadro : InterfazBase
     override
 public void actuar()
     {
-        if (tiempoActual <= 0)
+
+        acumulador += Time.deltaTime;
+        pulsado = true;
+
+        if (acumulador > tiempoAcumulador)
         {
-            tiempoActual = base.tiempoEsperar;
-            switch (num)
+            if (tiempoActual <= 0)
             {
-                case 0:
-                    gestor.cambiarCuadroAlargado();
-                    break;
-                case 1:
-                    gestor.cambiarCuadroRectangular();
-                    break;
-                case 2:
-                    gestor.cambiarCuadroCuadrado();
-                    break;
+                tiempoActual = base.tiempoEsperar;
+                switch (num)
+                {
+                    case 0:
+                        gestor.cambiarCuadroAlargado();
+                        break;
+                    case 1:
+                        gestor.cambiarCuadroRectangular();
+                        break;
+                    case 2:
+                        gestor.cambiarCuadroCuadrado();
+                        break;
+
+                }
+
 
             }
-
-
+            acumulador = 0;
         }
+
+
+      
     }
 }

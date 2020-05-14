@@ -14,22 +14,44 @@ public class Interfaz : InterfazBase
         {
             tiempoActual -= Time.deltaTime;
         }
+        if (!pulsado && acumulador > 0)
+        {
+            acumulador -= Time.deltaTime;
+        }
+        if (pulsado)
+        {
+            pulsado = false;
+        }
     }
 
     override
     public void actuar()
     {
-        if(tiempoActual <= 0)
+        acumulador += Time.deltaTime;
+        pulsado = true;
+
+        if(acumulador > tiempoAcumulador)
+        {
+            metodoReal();
+            acumulador = 0;
+        }
+
+    }
+
+    public void metodoReal()
+    {
+        if (tiempoActual <= 0)
         {
             if (miObjeto.encendido)
             {
-                if(miObjeto != null)
+                if (miObjeto != null)
                 {
                     miObjeto.apagar();
                     this.GetComponent<MeshRenderer>().material = interfazSinActivar;
                 }
 
-            } else
+            }
+            else
             {
                 if (miObjeto != null)
                 {
@@ -39,7 +61,6 @@ public class Interfaz : InterfazBase
             }
             tiempoActual = tiempoEsperar;
         }
-
     }
 
 

@@ -16,12 +16,22 @@ public class BajarVolumenMusica : InterfazBase
     override
     public void actuar()
     {
-        if (tiempoActual <= 0)
-        {
-            tiempoActual = base.tiempoEsperar;
-            StartCoroutine("bajarVol");
 
+        acumulador += Time.deltaTime;
+        pulsado = true;
+
+        if (acumulador > tiempoAcumulador)
+        {
+            if (tiempoActual <= 0)
+            {
+                tiempoActual = base.tiempoEsperar;
+                StartCoroutine("bajarVol");
+
+            }
+            acumulador = tiempoAcumulador/2;
         }
+
+        
     }
 
 

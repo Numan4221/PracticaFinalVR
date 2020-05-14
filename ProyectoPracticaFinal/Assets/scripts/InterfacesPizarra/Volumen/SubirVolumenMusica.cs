@@ -16,12 +16,20 @@ public class SubirVolumenMusica : InterfazBase
     override
     public void actuar()
     {
-        if (tiempoActual <= 0)
-        {
-            tiempoActual = base.tiempoEsperar;
-            controladorAltavocez.subirVolumen();
+        acumulador += Time.deltaTime;
+        pulsado = true;
 
+        if (acumulador > tiempoAcumulador)
+        {
+            if (tiempoActual <= 0)
+            {
+                tiempoActual = base.tiempoEsperar;
+                controladorAltavocez.subirVolumen();
+
+            }
+            acumulador = tiempoAcumulador / 2;
         }
+
     }
 
 

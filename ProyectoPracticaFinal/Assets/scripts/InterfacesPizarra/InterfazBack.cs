@@ -9,11 +9,19 @@ public class InterfazBack : InterfazBase
     override
     public void actuar()
     {
-        if (tiempoActual <= 0)
-        {
-            tiempoActual = tiempoEsperar;
-            StartCoroutine("llamarPizarra");
 
+        acumulador += Time.deltaTime;
+        pulsado = true;
+
+        if (acumulador > tiempoAcumulador)
+        {
+            if (tiempoActual <= 0)
+            {
+                tiempoActual = tiempoEsperar;
+                StartCoroutine("llamarPizarra");
+
+            }
+            acumulador = 0;
         }
 
     }
