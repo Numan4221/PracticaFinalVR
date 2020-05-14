@@ -6,28 +6,60 @@ public class InterfazModoCine : InterfazBase
 {
     public ReproductorVideo reproductor;
 
+    public bool activadoCine;
+
+    protected void Start()
+    {
+        tiempoActual = 0;
+        activadoCine = false;
+        if (activadoCine)
+        {
+            this.GetComponent<MeshRenderer>().material = interfazActivada;
+        }
+        else
+        {
+            this.GetComponent<MeshRenderer>().material = interfazSinActivar;
+        }
+
+    }
+
+    override
+    protected void Update()
+    {
+        if (tiempoActual > 0)
+        {
+            tiempoActual -= Time.deltaTime;
+        }
+    }
+
+
     override
     public void actuar()
     {
         if (tiempoActual <= 0)
         {
             tiempoActual = base.tiempoEsperar;
-            StartCoroutine("activarCine");
+            activarCine();
 
         }
     }
 
 
-    IEnumerator activarCine()
+    void activarCine()
     {
-        bool activado = false;
-
-        while (!activado)
+        if (activadoCine)
         {
             reproductor.ponerCine();
-            activado = true;
-            yield return new WaitForSecondsRealtime(base.tiempoEsperar);
+            this.GetComponent<MeshRenderer>().material = interfazSinActivar;
+            activadoCine = false;
+        } else
+        {
+            reproductor.ponerCine();
+            this.GetComponent<MeshRenderer>().material = interfazActivada;
+            activadoCine = true;
         }
+
+        tiempoActual = tiempoEsperar;
 
     }
 

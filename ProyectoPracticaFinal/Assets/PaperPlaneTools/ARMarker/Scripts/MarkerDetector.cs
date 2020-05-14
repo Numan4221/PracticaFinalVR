@@ -48,7 +48,7 @@
 
 //			CvAruco.DrawDetectedMarkers (mat, corners, ids);
 
-			float markerSizeInMeters = 0.08f;
+			float markerSizeInMeters = 0.05f;
 
 			Point3f[] markerPoints = new Point3f[] {
 				new Point3f(-markerSizeInMeters / 2f,  markerSizeInMeters / 2f, 0f),
@@ -84,7 +84,7 @@
                 //				CvAruco.DrawAxis(mat, cameraMatrix, distCoeffs, rvec, tvec, 1.0f);
                 //Cv2.Rodrigues (rvec, out rotMat);
                 float theta = (float)(Math.Sqrt(rvec[0] * rvec[0] + rvec[1] * rvec[1] + rvec[2] * rvec[2]) * 180 / Math.PI);
-                Vector3 axis = new Vector3((float)rvec[0], (float)rvec[1], (float)rvec[2]);
+                Vector3 axis = new Vector3((float)rvec[0], -(float)rvec[1], (float)rvec[2]);
                 Quaternion rot = Quaternion.AngleAxis(theta, axis);
                 Matrix4x4 matrix = Matrix4x4.TRS(new Vector3( (float )tvec[0],(float)tvec[1],(float)tvec[2]), rot, new Vector3(1f, 1f, 1f));
                 //Matrix4x4 matrix = new Matrix4x4();

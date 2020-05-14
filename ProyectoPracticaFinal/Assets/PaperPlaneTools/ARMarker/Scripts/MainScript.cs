@@ -44,7 +44,6 @@ namespace PaperPlaneTools.AR {
 		private MarkerDetector markerDetector;
 
 
-        public Text consola;
         public GameObject camara;
 
 
@@ -77,7 +76,6 @@ namespace PaperPlaneTools.AR {
             int cameraIndex = -1;
 			for (int i = 0; i < WebCamTexture.devices.Length; i++) {
 				WebCamDevice webCamDevice = WebCamTexture.devices [i];
-                consola.text = consola.text + " \n" + webCamDevice.name + " tipo de camara " + webCamDevice.isFrontFacing;
 				if (webCamDevice.isFrontFacing == false) {
 					cameraIndex = i;
 					break;
@@ -212,6 +210,11 @@ namespace PaperPlaneTools.AR {
 
             if (gameObject.name.Equals("MandoCapsula(Clone)"))
             {
+
+                gameObject.transform.localPosition = MatrixHelper.GetPosition(matrix);
+                gameObject.transform.localRotation = MatrixHelper.GetQuaternion(matrix);
+                gameObject.transform.localScale = MatrixHelper.GetScale(matrix);
+                /*
                 if (!inicializado)
                 {
                     Vector3 posMando = MatrixHelper.GetPosition(matrix);
@@ -225,7 +228,7 @@ namespace PaperPlaneTools.AR {
                     inicializado = true;
 
 
-                    gameObject.transform.localPosition = newPos - new Vector3(0,0.1f,0);
+                    gameObject.transform.localPosition = newPos - new Vector3(0,0.05f,0);
                     gameObject.transform.localRotation = newRot;
                     gameObject.transform.localScale = MatrixHelper.GetScale(matrix);
                 } else
@@ -244,7 +247,7 @@ namespace PaperPlaneTools.AR {
                     gameObject.transform.localRotation = newRot;
                     gameObject.transform.localScale = MatrixHelper.GetScale(matrix);
                 }
-
+                */
 
             } else
             {

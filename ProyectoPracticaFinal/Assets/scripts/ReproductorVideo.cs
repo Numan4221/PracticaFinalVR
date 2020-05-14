@@ -26,6 +26,8 @@ public class ReproductorVideo : ObjetoControlable
         reproductor.clip = canales[canal];
         sonido.clip = sonidos[canal];
         actualizarVolumen();
+        sonido.spatialize = true;
+
     }
 
     public void sigCanal()
@@ -71,6 +73,7 @@ public class ReproductorVideo : ObjetoControlable
         if (sonido.isPlaying)
         {
             sonido.Stop();
+            sonido.spatialize = false;
         }
     }
 
@@ -84,6 +87,7 @@ public class ReproductorVideo : ObjetoControlable
         }
         if (!sonido.isPlaying)
         {
+            sonido.spatialize = true;
             sonido.Play();
         }
     }
