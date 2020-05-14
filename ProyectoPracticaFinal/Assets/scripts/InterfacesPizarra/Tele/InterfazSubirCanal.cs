@@ -16,13 +16,21 @@ public class InterfazSubirCanal : InterfazBase
     override
    public void actuar()
     {
-        if (tiempoActual <= 0)
-        {
-            tiempoActual = base.tiempoEsperar;
-            reproductor.sigCanal();
-            mostrador.actualizarCanal();
+        acumulador += Time.deltaTime;
+        pulsado = true;
 
+        if (acumulador > tiempoAcumulador)
+        {
+            if (tiempoActual <= 0)
+            {
+                tiempoActual = base.tiempoEsperar;
+                reproductor.sigCanal();
+                mostrador.actualizarCanal();
+
+            }
+            acumulador = tiempoAcumulador / 3;
         }
+
     }
 
 

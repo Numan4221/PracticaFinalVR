@@ -8,6 +8,12 @@ public class InterfazBase : MonoBehaviour
     public float tiempoActual;
     public Material interfazSinActivar;
     public Material interfazActivada;
+
+    [SerializeField]
+    protected float acumulador = 0;
+    [SerializeField]
+    protected bool pulsado = false;
+    protected float tiempoAcumulador = 0.5f;
     // Start is called before the first frame update
     virtual
     protected void Start()
@@ -28,6 +34,14 @@ public class InterfazBase : MonoBehaviour
         else
         {
             this.GetComponent<MeshRenderer>().material = interfazSinActivar;
+        }
+        if (!pulsado && acumulador > 0)
+        {
+            acumulador -= Time.deltaTime;
+        }
+        if (pulsado)
+        {
+            pulsado = false;
         }
     }
 

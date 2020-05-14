@@ -15,11 +15,19 @@ public class InterfazBajarVolumenTele : InterfazBase
     override
     public void actuar()
     {
-        if (tiempoActual <= 0)
-        {
-            tiempoActual = base.tiempoEsperar;
-            reproductor.bajarVolumen();
+        acumulador += Time.deltaTime;
+        pulsado = true;
 
+        if (acumulador > tiempoAcumulador)
+        {
+            if (tiempoActual <= 0)
+            {
+                tiempoActual = base.tiempoEsperar;
+                reproductor.bajarVolumen();
+
+            }
+            acumulador = tiempoAcumulador / 2;
         }
+
     }
 }

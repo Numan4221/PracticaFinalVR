@@ -48,7 +48,7 @@
 
 //			CvAruco.DrawDetectedMarkers (mat, corners, ids);
 
-			float markerSizeInMeters = 0.05f;
+			float markerSizeInMeters = 0.08f;
 
 			Point3f[] markerPoints = new Point3f[] {
 				new Point3f(-markerSizeInMeters / 2f,  markerSizeInMeters / 2f, 0f),
@@ -81,23 +81,27 @@
 
 				Cv2.SolvePnP(markerPoints, corners[i], cameraMatrix, distCoeffs, out rvec, out tvec, false, SolvePnPFlags.Iterative);
 
+
                 //				CvAruco.DrawAxis(mat, cameraMatrix, distCoeffs, rvec, tvec, 1.0f);
                 //Cv2.Rodrigues (rvec, out rotMat);
                 float theta = (float)(Math.Sqrt(rvec[0] * rvec[0] + rvec[1] * rvec[1] + rvec[2] * rvec[2]) * 180 / Math.PI);
-                Vector3 axis = new Vector3((float)rvec[0], -(float)rvec[1], (float)rvec[2]);
+                Vector3 axis = new Vector3(-(float)rvec[0], (float)rvec[1], (float)rvec[2]);
                 Quaternion rot = Quaternion.AngleAxis(theta, axis);
-                Matrix4x4 matrix = Matrix4x4.TRS(new Vector3( (float )tvec[0],(float)tvec[1],(float)tvec[2]), rot, new Vector3(1f, 1f, 1f));
-                //Matrix4x4 matrix = new Matrix4x4();
-                /*matrix.SetRow(0, new Vector4((float)rotMat[0, 0], (float)rotMat[0, 1], (float)rotMat[0, 2], (float)tvec[0]));
-                matrix.SetRow(1, new Vector4((float)rotMat[1, 0], (float)rotMat[1, 1], (float)rotMat[1, 2], (float)tvec[1]));
-                matrix.SetRow(2, new Vector4((float)rotMat[2, 0], (float)rotMat[2, 1], (float)rotMat[2, 2], (float)tvec[2]));
-                */
+                Matrix4x4 matrizAux = Matrix4x4.TRS(new Vector3( (float )tvec[0],(float)tvec[1],(float)tvec[2]), rot, new Vector3(1f, 1f, 1f));
+                Matrix4x4 matrix = new Matrix4x4();
+                
+
+                matrix.SetRow(0, new Vector4((float)matrizAux[0, 0], (float)matrizAux[0, 1], (float)matrizAux[0, 2], (float)tvec[0]));
+                matrix.SetRow(1, new Vector4((float)matrizAux[1, 0], (float)matrizAux[1, 1], (float)matrizAux[1, 2], (float)tvec[1]));
+                matrix.SetRow(2, new Vector4((float)matrizAux[2, 0], (float)matrizAux[2, 1], (float)matrizAux[2, 2], (float)tvec[2]));
+                
                 /*
                 matrix.SetRow(0, new Vector4(1, 1, 1, (float)tvec[0]));
                 matrix.SetRow(1, new Vector4(1, 1, 1, (float)tvec[1]));
                 matrix.SetRow(2, new Vector4(1, 1, 1, (float)tvec[2]));
                 matrix.SetRow(3, new Vector4(0f, 0f, 0f, 1f));
-                */
+                */            
+
 				result.Add(ids[i]);
 				markerTransforms.Add(matrix);
 			}

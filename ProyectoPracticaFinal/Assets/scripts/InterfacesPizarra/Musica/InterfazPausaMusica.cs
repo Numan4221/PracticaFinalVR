@@ -26,17 +26,34 @@ public class InterfazPausaMusica : InterfazBase
         {
             tiempoActual -= Time.deltaTime;
         }
+        if (!pulsado && acumulador > 0)
+        {
+            acumulador -= Time.deltaTime;
+        }
+        if (pulsado)
+        {
+            pulsado = false;
+        }
     }
 
     override
    public void actuar()
     {
-        if (tiempoActual <= 0)
-        {
-            tiempoActual = tiempoEsperar;
-            llamarAltavoces();
+        acumulador += Time.deltaTime;
+        pulsado = true;
 
+        if (acumulador > tiempoAcumulador)
+        {
+            if (tiempoActual <= 0)
+            {
+                tiempoActual = tiempoEsperar;
+                llamarAltavoces();
+
+            }
+            acumulador = 0;
         }
+
+
 
     }
 

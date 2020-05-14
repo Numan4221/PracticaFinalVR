@@ -35,20 +35,36 @@ public class InterfazUsarDecoracion : InterfazBase
         {
             tiempoActual -= Time.deltaTime;
         }
+        if (!pulsado && acumulador > 0)
+        {
+            acumulador -= Time.deltaTime;
+        }
+        if (pulsado)
+        {
+            pulsado = false;
+        }
     }
 
 
     override
         public void actuar()
     {
-        if (tiempoActual <= 0)
-        {
-            tiempoActual = tiempoEsperar;
-            cambiarDecoracion();
-            activado = true;
-            this.GetComponent<MeshRenderer>().material = interfazActivada;
+        acumulador += Time.deltaTime;
+        pulsado = true;
 
+        if (acumulador > tiempoAcumulador)
+        {
+            if (tiempoActual <= 0)
+            {
+                tiempoActual = tiempoEsperar;
+                cambiarDecoracion();
+                activado = true;
+                this.GetComponent<MeshRenderer>().material = interfazActivada;
+
+            }
+            acumulador = 0;
         }
+
 
     }
 
