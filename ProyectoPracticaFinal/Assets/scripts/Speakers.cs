@@ -74,6 +74,7 @@ public class Speakers : ObjetoControlable
             foreach (AudioSource altavoz in altavoces)
             {
                 altavoz.Stop();
+                altavoz.spatialize = false;
             }
         }
     }
@@ -87,6 +88,7 @@ public class Speakers : ObjetoControlable
             encendido = true;
             foreach (AudioSource altavoz in altavoces)
             {
+                altavoz.spatialize = true;
                 altavoz.Play();
             }
         }
