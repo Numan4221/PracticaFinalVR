@@ -48,7 +48,7 @@
 
 //			CvAruco.DrawDetectedMarkers (mat, corners, ids);
 
-			float markerSizeInMeters = 0.20f;
+			float markerSizeInMeters = 0.08f;
 
 			Point3f[] markerPoints = new Point3f[] {
 				new Point3f(-markerSizeInMeters / 2f,  markerSizeInMeters / 2f, 0f),

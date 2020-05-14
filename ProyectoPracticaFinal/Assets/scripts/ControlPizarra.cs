@@ -96,7 +96,7 @@ public class ControlPizarra : MonoBehaviour
         {
             obj.SetActive(false);
         }
-        nivel = pantallaActual.Tele;
+        nivel = pantallaActual.Decoracion;
         foreach (GameObject obj in interfazDecoracion)
         {
             obj.SetActive(true);
